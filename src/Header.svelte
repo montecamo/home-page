@@ -27,8 +27,8 @@
     display: flex;
     pointer-events: auto;
 
-    font-family: "Poppins", sans-serif;
+    font-family: var(--font-family);
     font-size: var(--font-size);
-    font-weight: 600;
+    font-weight: var(--font-bold);
   }
 </style>

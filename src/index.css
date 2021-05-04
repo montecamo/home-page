@@ -11,6 +11,8 @@ body {
   --font-size: 64px;
   --line-height: 80px;
   --vertical-offset: 120px;
+  --font-family: "Poppins", sans-serif;
+  --font-bold: 600;
 }
 
 @media only screen and (max-width: 680px) {
@@ -64,9 +66,9 @@ body {
 }
 
 .cv {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-family);
   font-size: var(--font-size);
-  font-weight: 600;
+  font-weight: var(--font-bold);
 }
 
 .cv {
