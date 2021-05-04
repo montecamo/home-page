@@ -2,20 +2,20 @@
   import Letter from "./Letter.svelte";
 
   export let text;
+  let actives = {};
 
-  import { createEventDispatcher } from "svelte";
-  const dispatch = createEventDispatcher();
-
-  function handleClick() {
-    dispatch("click");
+  function handleClick(data) {
+    actives[data.detail] = !actives[data.detail];
   }
 </script>
 
 <div class="header">
-  {#each text as letter}
-    <Letter>
-      {letter}
-    </Letter>
+  {#each text as letter, i}
+    {#if letter === " "}
+      &nbsp;
+    {:else}
+      <Letter on:click={handleClick} index={i} {letter} active={actives[i]} />
+    {/if}
   {/each}
 </div>
 
