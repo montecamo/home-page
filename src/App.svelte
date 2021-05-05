@@ -1,12 +1,19 @@
 <script>
-  const LIGHT_COLOR = "#ffffff";
-  const DARK_COLOR = "#373a42";
+  import Header from "./components/Header.svelte";
+  import Theme from "./components/Theme.svelte";
+  import Particles from "./components/Particles.svelte";
+  import Icon from "./components/Icon.svelte";
+  import Link from "./components/Link.svelte";
 
-  import Header from "./Header.svelte";
-  import Theme from "./Theme.svelte";
-  import Particles from "./Particles.svelte";
-  import Icons from "./Icons.svelte";
-  import Link from "./Link.svelte";
+  import {
+    LIGHT_COLOR,
+    DARK_COLOR,
+    CV_URL,
+    GITHUB_URL,
+    LINKEDIN_URL,
+    EMAIL_URL,
+    TELEGRAM_URL,
+  } from "./constants";
 
   let theme = "light";
 
@@ -32,9 +39,22 @@
     <Header text="I'm montecamo." />
     <Header text="Frontend developer." />
 
-    <Link href="https://cv.montecamo.dev" inverted className="cv">.cv</Link>
+    <Link href={CV_URL} inverted className="cv">.cv</Link>
 
-    <Icons />
+    <div class="icons">
+      <Link href={GITHUB_URL}>
+        <Icon type="fab fa-github" />
+      </Link>
+      <Link href={TELEGRAM_URL}>
+        <Icon type="fab fa-telegram-plane" />
+      </Link>
+      <Link href={LINKEDIN_URL}>
+        <Icon type="fab fa-linkedin-in" />
+      </Link>
+      <Link href={EMAIL_URL}>
+        <Icon type="fas fa-envelope" />
+      </Link>
+    </div>
   </div>
 
   <Theme on:click={handleThemeChange} {theme} />
@@ -61,6 +81,10 @@
     align-items: flex-start;
 
     margin: auto 50% auto auto;
+  }
+
+  .icons {
+    display: flex;
   }
 
   :global(.cv) {

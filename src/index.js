@@ -5,8 +5,6 @@ import "@fortawesome/fontawesome-free/css/solid";
 import "@fortawesome/fontawesome-free/css/regular";
 import "@fortawesome/fontawesome-free/css/fontawesome";
 
-import "particles.js";
-
 import App from "./App.svelte";
 
 function replaceContainer(Component, options) {
@@ -19,5 +17,5 @@ function replaceContainer(Component, options) {
 }
 
 replaceContainer(App, {
-  target: document.getElementById("svelte"),
+  target: document.getElementById("root"),
 });

@@ -60,6 +60,7 @@ body {
   background-size: 100% 50%;
   color: var(--primary);
 }
+
 .hoverable.inverted {
   color: var(--primary);
 

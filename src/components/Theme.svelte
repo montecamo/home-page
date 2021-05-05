@@ -13,6 +13,7 @@
 
 <Icon
   type="theme hoverable {theme === 'dark' ? 'fas' : 'far'} fa-lightbulb"
+  className="theme"
   on:click={handleClick}
 />
 
