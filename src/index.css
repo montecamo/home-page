@@ -5,21 +5,28 @@ body {
   width: 100%;
   height: 100%;
 
+  user-select: none;
+
   --primary: #ff6e30;
   --secondary: #fff;
   --background: #373a42;
   --font-size: 64px;
   --line-height: 80px;
-  --vertical-offset: 120px;
   --font-family: "Poppins", sans-serif;
   --font-bold: 600;
+  --space: 24px;
+}
+a {
+  color: inherit;
+  text-decoration: inherit;
+  display: block;
 }
 
 @media only screen and (max-width: 680px) {
   body {
     --font-size: calc(64px - 16px);
     --line-height: calc(80px - 16px);
-    --vertical-offset: calc(120px - 16px * 2);
+    --space: calc(24px - 8px);
   }
 }
 
@@ -27,15 +34,15 @@ body {
   body {
     --font-size: calc(64px - 16px * 2);
     --line-height: calc(80px - 16px * 2);
-    --vertical-offset: calc(120px - 16px * 4);
+    --space: calc(24px - 8px * 2);
   }
 }
 
 @media only screen and (max-width: 340px) {
   body {
     --font-size: calc(64px - 16px * 3);
-    --line-height: calc(80px - 16px * 3);
-    --vertical-offset: calc(120px - 16px * 6);
+    --line-height: calc(80px - 16px * 3.5);
+    --space: calc(24px - 8px * 2.5);
   }
 }
 
@@ -72,11 +79,13 @@ body {
 }
 
 .cv {
-  color: var(--primary);
-  margin: var(--vertical-offset) 0;
-  transition: color 150ms ease-in;
-  pointer-events: auto;
+  margin: calc(var(--space) * 5) 0;
   cursor: pointer;
+}
+
+.hoverable {
+  pointer-events: auto;
+  color: var(--secondary);
 
   background: linear-gradient(
     to bottom,
@@ -85,24 +94,37 @@ body {
   );
   background-position: 0 100%;
   background-repeat: repeat-x;
-  background-size: 4px 4px;
-  text-decoration: none;
-  transition: background-size 0.2s;
+  background-size: 100% 0px;
+
+  transition: background-size 0.2s, color 0.2s;
 }
-.cv:hover {
-  background-size: 4px 50%;
+.hoverable:hover {
+  background-size: 100% 50%;
+  color: var(--primary);
+}
+.hoverable.inverted {
+  color: var(--primary);
+
+  background: linear-gradient(
+    to bottom,
+    var(--primary) 0%,
+    var(--primary) 100%
+  );
+  background-position: 0 100%;
+  background-repeat: repeat-x;
+  background-size: 2px 0px;
+}
+.hoverable.inverted:hover {
+  background-size: 2px 50%;
+  color: var(--secondary);
 }
 
 .icons {
-  pointer-events: auto;
-  color: var(--secondary);
-  font-size: calc(var(--font-size) - 24px);
+  font-size: calc(var(--font-size) * 0.8);
+  display: flex;
 }
 
 .icon {
   cursor: pointer;
-  transition: color 0.2s;
-}
-.icon:hover {
-  color: var(--primary);
+  padding: calc(var(--space) * 0.7);
 }
