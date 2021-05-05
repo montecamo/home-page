@@ -12,7 +12,7 @@
 </script>
 
 <Icon
-  type="theme hoverable fas {theme === 'dark' ? 'fa-sun' : 'fa-moon'}"
+  type="theme hoverable {theme === 'dark' ? 'fas' : 'far'} fa-lightbulb"
   on:click={handleClick}
 />
 
