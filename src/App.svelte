@@ -81,6 +81,7 @@
     align-items: flex-start;
 
     margin: auto 50% auto auto;
+    animation: appear 1s 1;
   }
 
   .icons {
@@ -89,5 +90,18 @@
 
   :global(.cv) {
     margin: calc(var(--space) * 5) 0;
+  }
+
+  @keyframes appear {
+    from {
+      filter: blur(16px);
+      transform: scale(2);
+      opacity: 0;
+    }
+    to {
+      filter: blur(0);
+      transform: scale(1);
+      opacity: 1;
+    }
   }
 </style>

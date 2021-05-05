@@ -137,5 +137,17 @@
 <style>
   #particles {
     transition: background 0.2s;
+    animation: appear 1.4s 1;
+  }
+
+  @keyframes appear {
+    from {
+      transform: scale(0);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
   }
 </style>
