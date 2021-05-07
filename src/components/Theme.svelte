@@ -5,7 +5,7 @@
 
 <div class="container">
   <Icon
-    type="theme hoverable {theme === 'dark' ? 'fas' : 'far'} fa-lightbulb"
+    type="theme hoverable {$theme === 'dark' ? 'fas' : 'far'} fa-lightbulb"
     on:click={toggleTheme}
   />
 </div>
