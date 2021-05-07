@@ -15,7 +15,7 @@
     TELEGRAM_URL,
   } from "./constants";
 
-  let theme = "light";
+  let theme = "dark";
 
   $: secondaryColor = theme === "light" ? DARK_COLOR : LIGHT_COLOR;
   $: backgroundColor = theme === "light" ? LIGHT_COLOR : DARK_COLOR;
@@ -81,7 +81,8 @@
     align-items: flex-start;
 
     margin: auto 50% auto auto;
-    animation: appear 1s 1;
+    animation: appear 1s;
+    animation-fill-mode: forwards;
   }
 
   .icons {
@@ -94,12 +95,12 @@
 
   @keyframes appear {
     from {
-      filter: blur(16px);
+      filter: blur(12px);
       transform: scale(2);
       opacity: 0;
     }
     to {
-      filter: blur(0);
+      filter: blur(0px);
       transform: scale(1);
       opacity: 1;
     }

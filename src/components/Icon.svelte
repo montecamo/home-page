@@ -8,8 +8,6 @@
   function handleClick() {
     dispatch("click");
   }
-
-  $: console.warn("type", type);
 </script>
 
 <div on:click={handleClick}>

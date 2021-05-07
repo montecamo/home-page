@@ -15,7 +15,7 @@
         },
       },
       color: {
-        value: "#373a42",
+        value: color,
       },
       shape: {
         type: "circle",
@@ -55,7 +55,7 @@
       line_linked: {
         enable: true,
         distance: 150,
-        color: "#373a42",
+        color,
         opacity: 0.4,
         width: 1,
       },
@@ -137,7 +137,10 @@
 <style>
   #particles {
     transition: background 0.2s;
-    animation: appear 1.4s 1;
+  }
+
+  :global(#particles canvas) {
+    animation: appear 1.4s;
   }
 
   @keyframes appear {
