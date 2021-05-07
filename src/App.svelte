@@ -15,13 +15,13 @@
     TELEGRAM_URL,
   } from "./constants";
 
-  let theme = "light";
+  import { theme } from "./stores/theme";
 
-  $: secondaryColor = theme === "light" ? DARK_COLOR : LIGHT_COLOR;
-  $: backgroundColor = theme === "light" ? LIGHT_COLOR : DARK_COLOR;
+  $: secondaryColor = $theme === "light" ? DARK_COLOR : LIGHT_COLOR;
+  $: backgroundColor = $theme === "light" ? LIGHT_COLOR : DARK_COLOR;
 
   function handleThemeChange() {
-    theme = theme === "dark" ? "light" : "dark";
+    $theme = $theme === "dark" ? "light" : "dark";
   }
 </script>
 
