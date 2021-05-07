@@ -3,7 +3,6 @@
   import { onMount } from "svelte";
 
   export let color;
-  export let background;
 
   const config = {
     particles: {
@@ -132,7 +131,7 @@
   });
 </script>
 
-<div id="particles" style="background: {background}" />
+<div id="particles" />
 
 <style>
   #particles {

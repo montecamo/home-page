@@ -1,4 +1,6 @@
 <script>
+  import { dark, light } from "./index.module.css";
+
   import Header from "./components/Header.svelte";
   import Theme from "./components/Theme.svelte";
   import Particles from "./components/Particles.svelte";
@@ -6,8 +8,6 @@
   import Link from "./components/Link.svelte";
 
   import {
-    LIGHT_COLOR,
-    DARK_COLOR,
     CV_URL,
     GITHUB_URL,
     LINKEDIN_URL,
@@ -17,23 +17,16 @@
 
   import { theme } from "./stores/theme";
 
-  $: secondaryColor = $theme === "light" ? DARK_COLOR : LIGHT_COLOR;
-  $: backgroundColor = $theme === "light" ? LIGHT_COLOR : DARK_COLOR;
+  $: secondaryColor = $theme === "light" ? dark : light;
 
   function handleThemeChange() {
     $theme = $theme === "dark" ? "light" : "dark";
   }
 </script>
 
-<Particles color={secondaryColor} background={backgroundColor} />
+<Particles color={secondaryColor} />
 
-<div
-  class="wrapper"
-  style="
-    --secondary: {secondaryColor};
-    --background: {backgroundColor};
-  "
->
+<div class="wrapper">
   <div class="container">
     <Header text="Hey." />
     <Header text="I'm montecamo." />

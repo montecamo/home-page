@@ -1,6 +1,6 @@
 import { get } from "svelte/store";
 import { theme } from "./stores/theme";
-import { LIGHT_COLOR, DARK_COLOR } from "./constants";
+import { dark, light } from "./index.module.css";
 
 document.documentElement.style.background =
-  get(theme) === "light" ? LIGHT_COLOR : DARK_COLOR;
+  get(theme) === "light" ? light : dark;

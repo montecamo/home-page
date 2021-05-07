@@ -1,0 +1,34 @@
+<!-- index.html -->
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      const STORAGE_KEY = "theme";
+
+      const getCachedTheme = () => localStorage.getItem(STORAGE_KEY);
+
+      const getSystemTheme = () =>
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+
+      document.documentElement.style.background =
+        get(theme) === "light" ? light : dark;
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="./src/index.js"></script>
+  </body>
+</html>
