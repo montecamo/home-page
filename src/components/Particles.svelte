@@ -140,7 +140,7 @@
   }
 
   :global(#particles canvas) {
-    animation: appear 1.4s;
+    animation: appear 1s;
   }
 
   @keyframes appear {

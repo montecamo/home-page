@@ -15,7 +15,7 @@
     TELEGRAM_URL,
   } from "./constants";
 
-  let theme = "dark";
+  let theme = "light";
 
   $: secondaryColor = theme === "light" ? DARK_COLOR : LIGHT_COLOR;
   $: backgroundColor = theme === "light" ? LIGHT_COLOR : DARK_COLOR;
@@ -81,7 +81,7 @@
     align-items: flex-start;
 
     margin: auto 50% auto auto;
-    animation: appear 1s;
+    animation: appear 0.6s;
     animation-fill-mode: forwards;
   }
 
