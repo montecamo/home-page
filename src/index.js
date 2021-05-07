@@ -1,9 +1,10 @@
-import "./index.css";
-
 import "@fortawesome/fontawesome-free/css/brands";
 import "@fortawesome/fontawesome-free/css/solid";
 import "@fortawesome/fontawesome-free/css/regular";
 import "@fortawesome/fontawesome-free/css/fontawesome";
+
+import "./index.css";
+import "./backgroundSetter";
 
 import App from "./App.svelte";
 

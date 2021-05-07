@@ -5,33 +5,19 @@
   import Icon from "./components/Icon.svelte";
   import Link from "./components/Link.svelte";
 
-  import {
-    LIGHT_COLOR,
-    DARK_COLOR,
-    CV_URL,
-    GITHUB_URL,
-    LINKEDIN_URL,
-    EMAIL_URL,
-    TELEGRAM_URL,
-  } from "./constants";
+  import { URLS } from "./constants";
 
-  import { theme } from "./stores/theme";
-
-  $: secondaryColor = $theme === "light" ? DARK_COLOR : LIGHT_COLOR;
-  $: backgroundColor = $theme === "light" ? LIGHT_COLOR : DARK_COLOR;
-
-  function handleThemeChange() {
-    $theme = $theme === "dark" ? "light" : "dark";
-  }
+  import { background, secondary, primary } from "./stores/colors";
 </script>
 
-<Particles color={secondaryColor} background={backgroundColor} />
+<Particles />
 
 <div
   class="wrapper"
   style="
-    --secondary: {secondaryColor};
-    --background: {backgroundColor};
+    --secondary: {$secondary};
+    --background: {$background};
+    --primary: {$primary};
   "
 >
   <div class="container">
@@ -39,25 +25,27 @@
     <Header text="I'm montecamo." />
     <Header text="Frontend developer." />
 
-    <Link href={CV_URL} inverted className="cv">.cv</Link>
+    <div class="cv-container">
+      <Link href={URLS.CV} inverted>.cv</Link>
+    </div>
 
     <div class="icons">
-      <Link href={GITHUB_URL}>
+      <Link href={URLS.GITHUB}>
         <Icon type="fab fa-github" />
       </Link>
-      <Link href={TELEGRAM_URL}>
+      <Link href={URLS.TELEGRAM}>
         <Icon type="fab fa-telegram-plane" />
       </Link>
-      <Link href={LINKEDIN_URL}>
+      <Link href={URLS.LINKEDIN}>
         <Icon type="fab fa-linkedin-in" />
       </Link>
-      <Link href={EMAIL_URL}>
+      <Link href={URLS.EMAIL}>
         <Icon type="fas fa-envelope" />
       </Link>
     </div>
   </div>
 
-  <Theme on:click={handleThemeChange} {theme} />
+  <Theme />
 </div>
 
 <style>
@@ -89,7 +77,7 @@
     display: flex;
   }
 
-  :global(.cv) {
+  .cv-container {
     margin: calc(var(--space) * 5) 0;
   }
 

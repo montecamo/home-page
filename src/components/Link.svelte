@@ -1,10 +1,9 @@
 <script>
   export let inverted = false;
   export let href;
-  export let className = "";
 </script>
 
-<a class="link hoverable {className}" class:inverted {href} target="_blank">
+<a class="link hoverable" class:inverted {href} target="_blank">
   <slot />
 </a>
 

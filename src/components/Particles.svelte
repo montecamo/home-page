@@ -2,8 +2,7 @@
   import "particles.js";
   import { onMount } from "svelte";
 
-  export let color;
-  export let background;
+  import { secondary as color } from "../stores/colors";
 
   const config = {
     particles: {
@@ -15,7 +14,7 @@
         },
       },
       color: {
-        value: color,
+        value: $color,
       },
       shape: {
         type: "circle",
@@ -55,7 +54,7 @@
       line_linked: {
         enable: true,
         distance: 150,
-        color,
+        color: $color,
         opacity: 0.4,
         width: 1,
       },
@@ -119,8 +118,8 @@
   $: {
     if (window["pJSDom"].length > 0) {
       // fucking undocumented lib 🤬🤬🤬
-      pJSDom[0].pJS.particles.line_linked.color = color;
-      pJSDom[0].pJS.particles.color.value = color;
+      pJSDom[0].pJS.particles.line_linked.color = $color;
+      pJSDom[0].pJS.particles.color.value = $color;
       window.pJSDom[0].pJS.fn.particlesRefresh();
     }
   }
@@ -132,13 +131,9 @@
   });
 </script>
 
-<div id="particles" style="background: {background}" />
+<div id="particles" />
 
 <style>
-  #particles {
-    transition: background 0.2s;
-  }
-
   :global(#particles canvas) {
     animation: appear 1s;
   }

@@ -6,10 +6,10 @@ body {
   height: 100%;
 
   user-select: none;
+  transition: background 0.2s;
 }
 
 :root {
-  --primary: #ff6e30;
   --font-size: 64px;
   --line-height: 80px;
   --font-family: "Poppins", sans-serif;

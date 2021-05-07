@@ -1,6 +1,5 @@
 <script>
   export let type = "";
-  export let className = "";
 
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
@@ -10,9 +9,7 @@
   }
 </script>
 
-<div on:click={handleClick}>
-  <i class="icon {type} {className}" />
-</div>
+<i on:click={handleClick} class="icon {type}" />
 
 <style>
   .icon {

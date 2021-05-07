@@ -1,24 +1,17 @@
 <script>
   import Icon from "./Icon.svelte";
-
-  export let theme;
-
-  import { createEventDispatcher } from "svelte";
-  const dispatch = createEventDispatcher();
-
-  function handleClick() {
-    dispatch("click");
-  }
+  import { theme, toggleTheme } from "../stores/theme";
 </script>
 
-<Icon
-  type="theme hoverable {theme === 'dark' ? 'fas' : 'far'} fa-lightbulb"
-  className="theme"
-  on:click={handleClick}
-/>
+<div class="container">
+  <Icon
+    type="theme hoverable {theme === 'dark' ? 'fas' : 'far'} fa-lightbulb"
+    on:click={toggleTheme}
+  />
+</div>
 
 <style>
-  :global(.theme) {
+  .container {
     position: absolute;
     right: 1%;
     top: 1%;

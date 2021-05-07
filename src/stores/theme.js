@@ -1,4 +1,4 @@
-import { writable } from "svelte/store";
+import { writable, get } from "svelte/store";
 
 const STORAGE_KEY = "theme";
 
@@ -14,4 +14,8 @@ const theme = writable(getCachedTheme() ?? getSystemTheme());
 
 theme.subscribe(updateCachedTheme);
 
-export { theme };
+const toggleTheme = () => {
+  theme.set(get(theme) === "light" ? "dark" : "light");
+};
+
+export { theme, toggleTheme };
