@@ -134,6 +134,10 @@
 <div id="particles" />
 
 <style>
+  #particles {
+    height: 100%;
+  }
+
   :global(#particles canvas) {
     animation: appear 1s;
   }

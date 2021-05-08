@@ -26,20 +26,20 @@
     <Header text="Frontend developer." />
 
     <div class="cv-container">
-      <Link href={URLS.CV} inverted>.cv</Link>
+      <Link href={URLS.CV} inverted aria="cv link">.cv</Link>
     </div>
 
     <div class="icons">
-      <Link href={URLS.GITHUB}>
+      <Link href={URLS.GITHUB} aria="Github link">
         <Icon type="fab fa-github" />
       </Link>
-      <Link href={URLS.TELEGRAM}>
+      <Link href={URLS.TELEGRAM} aria="Telegram link">
         <Icon type="fab fa-telegram-plane" />
       </Link>
-      <Link href={URLS.LINKEDIN}>
+      <Link href={URLS.LINKEDIN} aria="Linkedin link">
         <Icon type="fab fa-linkedin-in" />
       </Link>
-      <Link href={URLS.EMAIL}>
+      <Link href={URLS.EMAIL} aria="Email link">
         <Icon type="fas fa-envelope" />
       </Link>
     </div>

@@ -1,9 +1,17 @@
 <script>
   export let inverted = false;
+  export let aria = "";
   export let href;
 </script>
 
-<a class="link hoverable" class:inverted {href} target="_blank">
+<a
+  class="link hoverable"
+  class:inverted
+  {href}
+  aria-label={aria}
+  target="_blank"
+  rel="noopener"
+>
   <slot />
 </a>
 
