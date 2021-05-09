@@ -83,12 +83,10 @@
 
   @keyframes appear {
     from {
-      filter: blur(12px);
       transform: scale(2);
       opacity: 0;
     }
     to {
-      filter: blur(0px);
       transform: scale(1);
       opacity: 1;
     }

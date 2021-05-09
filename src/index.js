@@ -1,7 +1,7 @@
-import "@fortawesome/fontawesome-free/css/brands";
-import "@fortawesome/fontawesome-free/css/solid";
-import "@fortawesome/fontawesome-free/css/regular";
-import "@fortawesome/fontawesome-free/css/fontawesome";
+import "@fortawesome/fontawesome-free/css/brands.css";
+import "@fortawesome/fontawesome-free/css/solid.css";
+import "@fortawesome/fontawesome-free/css/regular.css";
+import "@fortawesome/fontawesome-free/css/fontawesome.css";
 
 import "./index.css";
 import "./backgroundSetter";

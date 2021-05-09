@@ -6,16 +6,10 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
-    <link rel="shortcut icon" href="../public/favicon.ico" />
+    <link rel="shortcut icon" href="/favicon.ico" />
     <meta name="description" content="Montecamo personal website" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
     <title>montecamo</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap"
-      rel="stylesheet"
-    />
-    <script src="./backgroundSetter.js"></script>
-    <script>
+    <script defer>
       (function (w, d, s, l, i) {
         w[l] = w[l] || [];
         w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
@@ -27,9 +21,16 @@
         f.parentNode.insertBefore(j, f);
       })(window, document, "script", "dataLayer", "GTM-5TB393K");
     </script>
+    <script>
+      document.documentElement.style.background =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "#373a42"
+          : "#fff";
+    </script>
   </head>
   <body>
     <div id="root"></div>
-    <script src="./index.js"></script>
+    <script type="module" src="./src/index.js"></script>
   </body>
 </html>
