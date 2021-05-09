@@ -8,6 +8,7 @@
   import { URLS } from "./constants";
 
   import { background, secondary, primary } from "./stores/colors";
+  import { fontLoaded } from "./stores/fontLoaded";
 </script>
 
 <Particles />
@@ -20,7 +21,7 @@
     --primary: {$primary};
   "
 >
-  <div class="container">
+  <div class="container" class:font-loaded={$fontLoaded}>
     <Header text="Hey." />
     <Header text="I'm montecamo." />
     <Header text="Frontend developer." />
@@ -69,6 +70,10 @@
     align-items: flex-start;
 
     margin: auto 50% auto auto;
+    opacity: 0;
+  }
+
+  .container.font-loaded {
     animation: appear 0.6s;
     animation-fill-mode: forwards;
   }
