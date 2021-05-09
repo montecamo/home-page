@@ -4,14 +4,20 @@
   import Particles from "./components/Particles.svelte";
   import Icon from "./components/Icon.svelte";
   import Link from "./components/Link.svelte";
+  import RickRoll from "./components/RickRoll.svelte";
 
-  import { URLS } from "./constants";
+  import { URLS, HEADINGS } from "./constants";
 
   import { background, secondary, primary } from "./stores/colors";
   import { fontLoaded } from "./stores/fontLoaded";
+  import { rickroll } from "./stores/rickroll";
 </script>
 
 <Particles />
+
+{#if $rickroll}
+  <RickRoll />
+{/if}
 
 <div
   class="wrapper"
@@ -22,9 +28,9 @@
   "
 >
   <div class="container" class:font-loaded={$fontLoaded}>
-    <Header text="Hey." />
-    <Header text="I'm montecamo." />
-    <Header text="Frontend developer." />
+    {#each HEADINGS as heading}
+      <Header text={heading} />
+    {/each}
 
     <div class="cv-container">
       <Link href={URLS.CV} inverted aria="cv link">.cv</Link>
@@ -46,7 +52,9 @@
     </div>
   </div>
 
-  <Theme />
+  {#if !$rickroll}
+    <Theme />
+  {/if}
 </div>
 
 <style>

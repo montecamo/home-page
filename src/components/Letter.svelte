@@ -1,13 +1,13 @@
 <script>
   export let active;
-  export let index;
   export let letter;
+  export let key;
 
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
 
   function handleClick() {
-    dispatch("click", index);
+    dispatch("click", key);
   }
 </script>
 

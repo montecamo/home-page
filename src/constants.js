@@ -11,3 +11,5 @@ export const URLS = {
   EMAIL: "mailto:merrychristek@gmail.com",
   TELEGRAM: "https://t.me/montecamo",
 };
+
+export const HEADINGS = ["Hey.", "I'm montecamo.", "Frontend developer."];

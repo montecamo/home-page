@@ -2,10 +2,15 @@
   import Letter from "./Letter.svelte";
 
   export let text;
-  let actives = {};
+
+  import { activeLetters, toggleLetter } from "../stores/activeLetters";
 
   function handleClick(data) {
-    actives[data.detail] = !actives[data.detail];
+    toggleLetter(data.detail);
+  }
+
+  function getKey(i) {
+    return `${text}-${i}`;
   }
 </script>
 
@@ -14,7 +19,12 @@
     {#if letter === " "}
       &nbsp;
     {:else}
-      <Letter on:click={handleClick} index={i} {letter} active={actives[i]} />
+      <Letter
+        on:click={handleClick}
+        key={getKey(i)}
+        {letter}
+        active={$activeLetters[getKey(i)]}
+      />
     {/if}
   {/each}
 </div>
