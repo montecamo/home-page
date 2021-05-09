@@ -27,11 +27,14 @@
       })(window, document, "script", "dataLayer", "GTM-5TB393K");
     </script>
     <script>
-      document.documentElement.style.background =
-        window.matchMedia &&
+      const theme =
+        localStorage.getItem("theme") ??
+        (window.matchMedia &&
         window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "#373a42"
-          : "#fff";
+          ? "dark"
+          : "light");
+      document.documentElement.style.background =
+        theme === "dark" ? "#373a42" : "#fff";
     </script>
   </head>
   <body>
