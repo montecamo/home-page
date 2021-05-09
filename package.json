@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.3",
-    "particles.js": "github:theboringindustries/particles.js",
+    "@theboringindustries/particles.js": "^1.1.0",
     "svelte": "^3.38.1",
     "youtube-player": "^5.5.2"
   },

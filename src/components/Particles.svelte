@@ -1,5 +1,5 @@
 <script>
-  import "particles.js";
+  import "@theboringindustries/particles.js";
   import { onMount } from "svelte";
 
   import { secondary as color } from "../stores/colors";
