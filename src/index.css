@@ -43,9 +43,8 @@ body {
 
 @media only screen and (max-width: 340px) {
   :root {
-    --font-size: calc(64px - 16px * 3);
-    --line-height: calc(80px - 16px * 3.5);
-    --space: calc(24px - 8px * 2.5);
+    --font-size: calc(64px - 16px * 2.5);
+    --line-height: calc(80px - 16px * 2.5);
   }
 }
 
