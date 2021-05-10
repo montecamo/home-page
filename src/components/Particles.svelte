@@ -1,5 +1,6 @@
 <script lang="ts">
   import "@theboringindustries/particles.js";
+  export let visible: boolean;
 
   import { onMount } from "svelte";
 
@@ -117,7 +118,7 @@
   };
 
   $: {
-    if (window["pJSDom"].length > 0) {
+    if (window["pJSDom"]?.length > 0) {
       // fucking undocumented lib 🤬🤬🤬
       // @ts-ignore
       window.pJSDom[0].pJS.particles.line_linked.color = $color;
@@ -136,14 +137,15 @@
   });
 </script>
 
-<div id="particles" />
+<div id="particles" class:visible class:not-visible={!visible} />
 
 <style>
   #particles {
     height: 100%;
+    animation: disappear 1s;
   }
 
-  :global(#particles canvas) {
+  #particles.visible {
     animation: appear 1s;
   }
 
@@ -155,6 +157,17 @@
     to {
       transform: scale(1);
       opacity: 1;
+    }
+  }
+
+  @keyframes disappear {
+    from {
+      transform: scale(1);
+      opacity: 1;
+    }
+    to {
+      transform: scale(0);
+      opacity: 0;
     }
   }
 </style>

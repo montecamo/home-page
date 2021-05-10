@@ -1,4 +1,4 @@
-import { derived } from "svelte/store";
+import { derived, writable } from "svelte/store";
 import { HEADINGS } from "../constants";
 import { activeLetters } from "./activeLetters";
 
@@ -9,5 +9,6 @@ const rickroll = derived(
   (letters$) =>
     Object.values(letters$).filter(Boolean).length === allLettersLength
 );
+const rickrollPlaying = writable(false);
 
-export { rickroll };
+export { rickroll, rickrollPlaying };

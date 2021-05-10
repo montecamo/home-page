@@ -2,10 +2,10 @@
   import YoutubePlayer from "youtube-player";
   import { onMount } from "svelte";
   import { theme } from "../stores/theme";
+  import { rickrollPlaying } from "../stores/rickroll";
+  import { sineIn } from "svelte/easing";
 
   const PLAYING = 1;
-
-  let ready = false;
 
   let width = 0;
   let height = 0;
@@ -27,12 +27,26 @@
 
     player.on("stateChange", ({ data }) => {
       if (data === PLAYING) {
-        ready = true;
+        $rickrollPlaying = true;
       }
     });
 
-    return () => player.destroy();
+    return () => {
+      $rickrollPlaying = false;
+      player.destroy();
+    };
   });
+
+  function disappear(_: HTMLElement, { duration }) {
+    return {
+      duration,
+      css: (t: number) => {
+        const eased = sineIn(t);
+
+        return `opacity: ${eased}; filter: blur(${(1 - eased) * 20}px);`;
+      },
+    };
+  }
 
   $: {
     if (player) {
@@ -41,7 +55,7 @@
   }
 
   $: {
-    if (ready) {
+    if ($rickrollPlaying) {
       $theme = "dark";
     }
   }
@@ -49,7 +63,11 @@
 
 <svelte:window bind:innerWidth={width} bind:innerHeight={height} />
 
-<div class="container" class:ready>
+<div
+  class="container"
+  class:ready={$rickrollPlaying}
+  out:disappear={{ duration: 1000 }}
+>
   <div bind:this={element} id="player" />
 </div>
 

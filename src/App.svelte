@@ -10,14 +10,14 @@
 
   import { background, secondary, primary } from "./stores/colors";
   import { fontLoaded } from "./stores/fontLoaded";
-  import { rickroll } from "./stores/rickroll";
+  import { rickroll, rickrollPlaying } from "./stores/rickroll";
 </script>
-
-<Particles />
 
 {#if $rickroll}
   <RickRoll />
 {/if}
+
+<Particles visible={!$rickroll || !$rickrollPlaying} />
 
 <div
   class="wrapper"
