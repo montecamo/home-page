@@ -1,5 +1,6 @@
-<script>
+<script lang="ts">
   import "@theboringindustries/particles.js";
+
   import { onMount } from "svelte";
 
   import { secondary as color } from "../stores/colors";
@@ -118,14 +119,18 @@
   $: {
     if (window["pJSDom"].length > 0) {
       // fucking undocumented lib 🤬🤬🤬
-      pJSDom[0].pJS.particles.line_linked.color = $color;
-      pJSDom[0].pJS.particles.color.value = $color;
+      // @ts-ignore
+      window.pJSDom[0].pJS.particles.line_linked.color = $color;
+      // @ts-ignore
+      window.pJSDom[0].pJS.particles.color.value = $color;
+      // @ts-ignore
       window.pJSDom[0].pJS.fn.particlesRefresh();
     }
   }
 
   onMount(() => {
     setTimeout(() => {
+      // @ts-ignore
       particlesJS("particles", config);
     });
   });

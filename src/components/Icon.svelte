@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   export let type = "";
 
   import { createEventDispatcher } from "svelte";

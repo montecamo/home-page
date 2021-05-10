@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Header from "./components/Header.svelte";
   import Theme from "./components/Theme.svelte";
   import Particles from "./components/Particles.svelte";

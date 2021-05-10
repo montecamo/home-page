@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
   export let inverted = false;
   export let aria = "";
-  export let href;
+  export let href: string;
 </script>
 
 <a

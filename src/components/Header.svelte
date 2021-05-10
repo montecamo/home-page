@@ -1,15 +1,15 @@
-<script>
+<script lang="ts">
   import Letter from "./Letter.svelte";
 
-  export let text;
+  export let text: string;
 
   import { activeLetters, toggleLetter } from "../stores/activeLetters";
 
-  function handleClick(data) {
+  function handleClick(data: CustomEvent<string>) {
     toggleLetter(data.detail);
   }
 
-  function getKey(i) {
+  function getKey(i: number): string {
     return `${text}-${i}`;
   }
 </script>

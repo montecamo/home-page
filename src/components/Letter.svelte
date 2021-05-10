@@ -1,7 +1,7 @@
-<script>
-  export let active;
-  export let letter;
-  export let key;
+<script lang="ts">
+  export let active: boolean;
+  export let letter: string;
+  export let key: string;
 
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();

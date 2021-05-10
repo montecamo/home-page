@@ -9,6 +9,6 @@ const secondary = derived(theme, (theme$) =>
   theme$ === "light" ? COLORS.DARK : COLORS.LIGHT
 );
 
-const primary = readable(COLORS.PRIMARY);
+const primary = readable(COLORS.PRIMARY, () => {});
 
 export { background, secondary, primary };

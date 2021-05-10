@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import YoutubePlayer from "youtube-player";
   import { onMount } from "svelte";
   import { theme } from "../stores/theme";
@@ -9,11 +9,11 @@
 
   let width = 0;
   let height = 0;
-  let player;
-  let element;
+  let player: ReturnType<typeof YoutubePlayer>;
+  let element: HTMLElement;
 
   onMount(() => {
-    player = new YoutubePlayer(element, {
+    player = YoutubePlayer(element, {
       videoId: "dQw4w9WgXcQ",
       width,
       height,
