@@ -13,7 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.3",
-    "@theboringindustries/particles.js": "^1.1.0",
+    "@theboringindustries/particles.js": "^1.3.3",
     "bytenode": "^1.2.3",
     "svelte": "^3.38.1",
     "youtube-player": "^5.5.2"
