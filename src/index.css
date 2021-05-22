@@ -48,6 +48,11 @@ body {
   }
 }
 
+#particles {
+  width: 100%;
+  height: 100%;
+}
+
 .hoverable {
   pointer-events: auto;
   color: var(--secondary);
