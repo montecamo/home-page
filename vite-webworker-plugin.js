@@ -4,7 +4,7 @@ import path from "path";
 const isWorker = (path) => /\.(worker)\..+$/.test(path);
 const isViteWorker = (path) => /\?worker_file/.test(path);
 
-export default function svgResolverPlugin() {
+export default function webworkerPlugin() {
   let config;
 
   return {
@@ -18,6 +18,10 @@ export default function svgResolverPlugin() {
     },
     load(id) {
       if (isWorker(id) && !isViteWorker(id)) {
+        if (config.command !== "build") {
+          return `export default '${id.match(/(src\/.*)/)[0]}?worker_file';`;
+        }
+
         const result = esbuild.buildSync({
           entryPoints: [id],
           write: false,
@@ -27,15 +31,11 @@ export default function svgResolverPlugin() {
 
         const content = result.outputFiles[0].contents;
 
-        if (config.command === "build") {
-          return `export default '__VITE_ASSET__${this.emitFile({
-            type: "asset",
-            name: path.basename(id).replace(/\.ts/, ".js"),
-            source: content,
-          })}__'`;
-        }
-
-        return `export default '${id.match(/(src\/.*)/)[0]}?worker_file';`;
+        return `export default '__VITE_ASSET__${this.emitFile({
+          type: "asset",
+          name: path.basename(id).replace(/\.ts/, ".js"),
+          source: content,
+        })}__'`;
       }
     },
   };

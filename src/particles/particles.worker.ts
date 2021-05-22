@@ -47,3 +47,5 @@ api.on<ColorEvent["data"]>(EVENT_TYPE.COLOR, (e) => {
     particles.fn.particlesRefresh();
   }
 });
+
+export default "";
