@@ -1,14 +1,15 @@
 import Particles from "@theboringindustries/particles.js";
 
 import { makeProtocol, EVENT_TYPE } from "./protocol";
+import type { CanvasEvent } from "./protocol";
+import { makeInsideBridge } from "./bridge";
 
 import { makeConfig } from "./config";
 
-const protocol = makeProtocol((e) => postMessage(e, "*"));
+const bridge = makeInsideBridge<CanvasEvent>();
+const protocol = makeProtocol(bridge.post, bridge.on);
 
 let particles;
-
-onmessage = (e) => protocol.message(e);
 
 protocol.on(EVENT_TYPE.INIT, (e) => {
   if ("canvas" in e) {
@@ -18,15 +19,17 @@ protocol.on(EVENT_TYPE.INIT, (e) => {
   }
 });
 protocol.on(EVENT_TYPE.RESIZE, (e) => {
-  if ("width" in e) {
+  if ("width" in e && particles) {
     particles.fn.vendors.resize(e.width, e.height);
   }
 });
 protocol.on(EVENT_TYPE.CLICK, () => {
-  particles.fn.vendors.click();
+  if (particles) {
+    particles.fn.vendors.click();
+  }
 });
 protocol.on(EVENT_TYPE.MOUSEMOVE, (e) => {
-  if ("x" in e) {
+  if ("x" in e && particles) {
     particles.fn.vendors.mousemove(e.x, e.y);
   }
 });

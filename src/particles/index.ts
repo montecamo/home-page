@@ -1,7 +1,8 @@
 // @ts-ignore
-import ParticlesWorker from "./worker.ts?worker";
+import url from "./particles.worker";
 
 import { makeProtocol, EVENT_TYPE } from "./protocol";
+import { makeOutsideBridge } from "./bridge";
 
 export function makeParticles(
   canvas: HTMLCanvasElement
@@ -14,11 +15,13 @@ export function makeParticles(
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 
-  const worker: Worker = new ParticlesWorker();
+  const bridge = makeOutsideBridge(url);
 
-  const protocol = makeProtocol(worker.postMessage.bind(worker));
+  const protocol = makeProtocol(bridge.post);
 
-  const offscreen = canvas.transferControlToOffscreen();
+  const offscreen = canvas.transferControlToOffscreen
+    ? canvas.transferControlToOffscreen()
+    : canvas;
 
   protocol.send(
     EVENT_TYPE.INIT,

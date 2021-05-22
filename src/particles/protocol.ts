@@ -27,7 +27,7 @@ type ColorEvent = {
   data: { color: string };
 };
 
-type CanvasEvent =
+export type CanvasEvent =
   | ResizeEvent
   | MoveEvent
   | ClickEvent
@@ -38,11 +38,11 @@ export type CanvasEventData = CanvasEvent["data"];
 type Listener = (event: CanvasEventData) => void;
 
 export function makeProtocol(
-  postMessage: (event: CanvasEvent) => void
+  postMessage: (event: CanvasEvent) => void,
+  onMessage?: (cb: (event: MessageEvent<CanvasEvent>) => void) => void
 ): {
   on: (type: EVENT_TYPE, cb: Listener) => void;
   send: (type: EVENT_TYPE, data?: CanvasEventData, transfer?: any[]) => void;
-  message: (event: MessageEvent<CanvasEvent>) => void;
 } {
   const listeners: { [type in EVENT_TYPE]: Listener[] } = {
     [EVENT_TYPE.CLICK]: [],
@@ -52,6 +52,16 @@ export function makeProtocol(
     [EVENT_TYPE.COLOR]: [],
   };
 
+  if (onMessage) {
+    setTimeout(() => {
+      onMessage((e) => {
+        const type = e.data.type;
+
+        listeners[type].forEach((cb) => cb(e.data.data));
+      });
+    }, 0);
+  }
+
   return {
     on: (type, cb) => {
       listeners[type] = listeners[type].concat(cb);
@@ -59,11 +69,6 @@ export function makeProtocol(
     send: (type, data, transfer) => {
       // @ts-ignore
       postMessage({ type, data }, transfer);
-    },
-    message: (e) => {
-      const type = e.data.type;
-
-      listeners[type].forEach((cb) => cb(e.data.data));
     },
   };
 }
