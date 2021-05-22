@@ -1,4 +1,9 @@
 <script lang="ts">
+  import LinkedinIcon from "@fortawesome/fontawesome-free/svgs/brands/linkedin-in.svg?component";
+  import GithubIcon from "@fortawesome/fontawesome-free/svgs/brands/github.svg?component";
+  import TelegramIcon from "@fortawesome/fontawesome-free/svgs/brands/telegram-plane.svg?component";
+  import EmailIcon from "@fortawesome/fontawesome-free/svgs/solid/envelope.svg?component";
+
   import Header from "./components/Header.svelte";
   import Theme from "./components/Theme.svelte";
   import Particles from "./components/Particles.svelte";
@@ -38,16 +43,24 @@
 
     <div class="icons">
       <Link href={URLS.GITHUB} aria="Github link">
-        <Icon type="fab fa-github" />
+        <Icon let:class={c}>
+          <GithubIcon class={c} />
+        </Icon>
       </Link>
       <Link href={URLS.TELEGRAM} aria="Telegram link">
-        <Icon type="fab fa-telegram-plane" />
+        <Icon let:class={c}>
+          <TelegramIcon class={c} />
+        </Icon>
       </Link>
       <Link href={URLS.LINKEDIN} aria="Linkedin link">
-        <Icon type="fab fa-linkedin-in" />
+        <Icon let:class={c}>
+          <LinkedinIcon class={c} />
+        </Icon>
       </Link>
       <Link href={URLS.EMAIL} aria="Email link">
-        <Icon type="fas fa-envelope" />
+        <Icon let:class={c}>
+          <EmailIcon class={c} />
+        </Icon>
       </Link>
     </div>
   </div>
@@ -91,7 +104,7 @@
   }
 
   .cv-container {
-    margin: calc(var(--space) * 5) 0;
+    margin: calc(var(--space) * 5.2) 0;
   }
 
   @keyframes appear {

@@ -1,13 +1,20 @@
 <script lang="ts">
   import Icon from "./Icon.svelte";
+
+  import ActiveBulbIcon from "@fortawesome/fontawesome-free/svgs/solid/lightbulb.svg?component";
+  import InactiveBulbIcon from "@fortawesome/fontawesome-free/svgs/regular/lightbulb.svg?component";
+
   import { theme, toggleTheme } from "../stores/theme";
 </script>
 
-<div class="container">
-  <Icon
-    type="theme hoverable {$theme === 'dark' ? 'fas' : 'far'} fa-lightbulb"
-    on:click={toggleTheme}
-  />
+<div class="container hoverable" on:click={toggleTheme}>
+  <Icon let:class={c}>
+    {#if $theme === "dark"}
+      <ActiveBulbIcon class={c} />
+    {:else}
+      <InactiveBulbIcon class={c} />
+    {/if}
+  </Icon>
 </div>
 
 <style>

@@ -1,6 +1,4 @@
 <script lang="ts">
-  export let type = "";
-
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
 
@@ -9,12 +7,21 @@
   }
 </script>
 
-<i on:click={handleClick} class="icon {type}" />
+<div on:click={handleClick} class="icon">
+  <slot class="svg" />
+</div>
 
 <style>
+  .svg {
+    fill: currentColor;
+    height: calc(var(--font-size) * 0.8);
+  }
+
   .icon {
-    font-size: calc(var(--font-size) * 0.8);
-    cursor: pointer;
     padding: calc(var(--space) * 0.7);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 </style>
