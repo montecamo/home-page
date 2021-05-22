@@ -1,43 +1,40 @@
+type BridgeListener<T> = (cb: (event: MessageEvent<T>) => void) => void;
+type BridgeEmitter<T> = (event: T) => void;
+
 type Bridge<T> = {
-  on: (cb: (event: MessageEvent<T>) => void) => void;
-  post: (event: T) => void;
+  on: BridgeListener<T>;
+  emit: BridgeEmitter<T>;
 };
 
-const BRIDGE_ID = "OFFSCREEN_CANVAS";
+const BRIDGE_ID = "OFFSCREEN_CANVAS_BRIDGE";
 
-export function makeOutsideBridge<T>(url: string): Bridge<T> {
-  const isWorker = Boolean(
-    document.createElement("canvas").transferControlToOffscreen
+function isWorker() {
+  return (
+    typeof window !== "object" ||
+    Boolean(document.createElement("canvas").transferControlToOffscreen)
   );
+}
 
-  if (isWorker) {
-    const worker = new Worker(url, { type: "module" });
-
-    return {
-      on: (cb) => {
-        worker.onmessage = cb;
-      },
-      post: worker.postMessage.bind(worker),
-    };
-  }
-
+function loadScript(url: string) {
   var script = document.createElement("script");
   script.type = "module";
   script.src = url;
   script.defer = true;
 
   document.head.appendChild(script);
+}
 
+function makeBridge<T>(): Bridge<T> {
   const listeners = [];
   const messages = [];
 
-  const bridge: Bridge<T> = {
+  return {
     on: (cb) => {
       messages.forEach(cb);
 
       listeners.push(cb);
     },
-    post: (event) => {
+    emit: (event) => {
       const message = new MessageEvent("bridge", { data: event });
 
       messages.push(message);
@@ -45,29 +42,38 @@ export function makeOutsideBridge<T>(url: string): Bridge<T> {
       listeners.forEach((cb) => cb(message));
     },
   };
+}
+
+export function makeOutsideBridge<T>(url: string): BridgeEmitter<T> {
+  if (isWorker()) {
+    const worker = new Worker(url, { type: "module" });
+
+    return worker.postMessage.bind(worker);
+  }
+
+  loadScript(url);
+
+  const bridge = makeBridge<T>();
 
   window[BRIDGE_ID] = bridge;
 
-  return bridge;
+  return bridge.emit;
 }
 
-export function makeInsideBridge<T>(): Bridge<T> {
-  const isWorker = typeof window !== "object";
+export function makeInsideBridge<T>(): BridgeListener<T> {
+  if (isWorker()) {
+    const listeners = [];
 
-  if (isWorker) {
-    return {
-      // @ts-ignore
-      on: (cb) => {
-        onmessage = cb;
-      },
-      // @ts-ignore
-      post: postMessage,
+    onmessage = (e) => {
+      listeners.forEach((cb) => cb(e));
+    };
+
+    return (cb) => {
+      listeners.push(cb);
     };
   }
 
   const bridge = window[BRIDGE_ID];
 
-  delete window[BRIDGE_ID];
-
-  return bridge;
+  return bridge.on;
 }

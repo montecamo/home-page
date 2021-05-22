@@ -1,42 +1,49 @@
 import Particles from "@theboringindustries/particles.js";
 
-import { makeProtocol, EVENT_TYPE } from "./protocol";
-import type { CanvasEvent } from "./protocol";
+import { makeApi, EVENT_TYPE } from "./api";
+import type {
+  CanvasEvent,
+  MoveEvent,
+  ColorEvent,
+  ClickEvent,
+  InitEvent,
+  ResizeEvent,
+} from "./api";
 import { makeInsideBridge } from "./bridge";
 
 import { makeConfig } from "./config";
 
-const bridge = makeInsideBridge<CanvasEvent>();
-const protocol = makeProtocol(bridge.post, bridge.on);
+const on = makeInsideBridge<CanvasEvent>();
 
-let particles;
+const api = makeApi({ on });
 
-protocol.on(EVENT_TYPE.INIT, (e) => {
-  if ("canvas" in e) {
-    particles = new Particles(e.canvas, makeConfig("#000"), {
-      pixelRatio: 2,
-    });
-  }
+let particles: ReturnType<Particles>;
+
+api.on<InitEvent["data"]>(EVENT_TYPE.INIT, (e) => {
+  particles = new Particles(e.canvas, makeConfig("#000"), {
+    pixelRatio: 2,
+  });
 });
-protocol.on(EVENT_TYPE.RESIZE, (e) => {
-  if ("width" in e && particles) {
+api.on<ResizeEvent["data"]>(EVENT_TYPE.RESIZE, (e) => {
+  if (particles) {
     particles.fn.vendors.resize(e.width, e.height);
   }
 });
-protocol.on(EVENT_TYPE.CLICK, () => {
+api.on<ClickEvent["data"]>(EVENT_TYPE.CLICK, () => {
   if (particles) {
     particles.fn.vendors.click();
   }
 });
-protocol.on(EVENT_TYPE.MOUSEMOVE, (e) => {
-  if ("x" in e && particles) {
+api.on<MoveEvent["data"]>(EVENT_TYPE.MOUSEMOVE, (e) => {
+  if (particles) {
     particles.fn.vendors.mousemove(e.x, e.y);
   }
 });
-protocol.on(EVENT_TYPE.COLOR, (e) => {
-  if ("color" in e && particles) {
-    particles.particles.line_linked.color = e.color;
-    particles.particles.color.value = e.color;
+
+api.on<ColorEvent["data"]>(EVENT_TYPE.COLOR, (e) => {
+  if (particles) {
+    particles.particles.line_linked.color = e;
+    particles.particles.color.value = e;
     particles.fn.particlesRefresh();
   }
 });

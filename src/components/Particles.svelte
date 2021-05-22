@@ -1,5 +1,4 @@
 <script lang="ts">
-  import "@theboringindustries/particles.js";
   import { makeParticles } from "../particles";
   export let visible: boolean;
 
@@ -21,22 +20,22 @@
   function handleClick() {
     particles.click();
   }
-  function handleMove(e) {
-    particles.move(e);
+  function handleMove(e: MouseEvent) {
+    particles.mousemove({ x: e.clientX, y: e.clientY });
   }
 
   onMount(() => {
     particles = makeParticles(canvas);
   });
 
-  onMount(() => {
-    const onResize = () => particles.resize();
-
-    window.addEventListener("resize", onResize);
-
-    return () => window.removeEventListener("resize", onResize);
-  });
+  $: {
+    if (particles) {
+      particles.resize({ width, height });
+    }
+  }
 </script>
+
+<svelte:window bind:innerWidth={width} bind:innerHeight={height} />
 
 <div
   on:click={handleClick}
