@@ -9,7 +9,7 @@
   import Particles from "./components/Particles.svelte";
   import Icon from "./components/Icon.svelte";
   import Link from "./components/Link.svelte";
-  import RickRoll from "./components/RickRoll.svelte";
+  const RickRoll = () => import("./components/RickRoll.svelte");
 
   import { URLS, HEADINGS } from "./constants";
 
@@ -19,7 +19,9 @@
 </script>
 
 {#if $rickroll}
-  <RickRoll />
+  {#await RickRoll() then module}
+    <svelte:component this={module.default} />
+  {/await}
 {/if}
 
 <Particles visible={!$rickroll || !$rickrollPlaying} />
