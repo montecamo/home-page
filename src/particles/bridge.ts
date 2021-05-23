@@ -6,18 +6,18 @@ type Bridge<T> = {
   emit: BridgeEmitter<T>;
 };
 
-const BRIDGE_ID = "OFFSCREEN_CANVAS_BRIDGE";
+const BRIDGE_ID = 'OFFSCREEN_CANVAS_BRIDGE';
 
 function isWorker() {
   return (
-    typeof window !== "object" ||
-    Boolean(document.createElement("canvas").transferControlToOffscreen)
+    typeof window !== 'object' ||
+    Boolean(document.createElement('canvas').transferControlToOffscreen)
   );
 }
 
 function loadScript(url: string) {
-  var script = document.createElement("script");
-  script.type = "module";
+  var script = document.createElement('script');
+  script.type = 'module';
   script.src = url;
   script.defer = true;
 
@@ -35,7 +35,7 @@ function makeBridge<T>(): Bridge<T> {
       listeners.push(cb);
     },
     emit: (event) => {
-      const message = new MessageEvent("bridge", { data: event });
+      const message = new MessageEvent('bridge', { data: event });
 
       messages.push(message);
 
@@ -46,7 +46,7 @@ function makeBridge<T>(): Bridge<T> {
 
 export function makeOutsideBridge<T>(url: string): BridgeEmitter<T> {
   if (isWorker()) {
-    const worker = new Worker(url, { type: "module" });
+    const worker = new Worker(url, { type: 'module' });
 
     return worker.postMessage.bind(worker);
   }

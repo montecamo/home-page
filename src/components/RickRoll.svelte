@@ -1,9 +1,9 @@
 <script lang="ts">
-  import YoutubePlayer from "youtube-player";
-  import { onMount } from "svelte";
-  import { theme } from "../stores/theme";
-  import { rickrollPlaying } from "../stores/rickroll";
-  import { sineIn } from "svelte/easing";
+  import YoutubePlayer from 'youtube-player';
+  import { onMount } from 'svelte';
+  import { theme } from '../stores/theme';
+  import { rickrollPlaying } from '../stores/rickroll';
+  import { sineIn } from 'svelte/easing';
 
   const PLAYING = 1;
 
@@ -14,7 +14,7 @@
 
   onMount(() => {
     player = YoutubePlayer(element, {
-      videoId: "dQw4w9WgXcQ",
+      videoId: 'dQw4w9WgXcQ',
       width,
       height,
       playerVars: {
@@ -25,7 +25,7 @@
       },
     });
 
-    player.on("stateChange", ({ data }) => {
+    player.on('stateChange', ({ data }) => {
       if (data === PLAYING) {
         $rickrollPlaying = true;
       }
@@ -56,7 +56,7 @@
 
   $: {
     if ($rickrollPlaying) {
-      $theme = "dark";
+      $theme = 'dark';
     }
   }
 </script>

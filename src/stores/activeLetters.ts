@@ -1,6 +1,6 @@
-import { writable } from "svelte/store";
+import { writable } from 'svelte/store';
 
-const activeLetters = writable<{ [key: string]: boolean}>({});
+const activeLetters = writable<{ [key: string]: boolean }>({});
 
 const toggleLetter = (key: string) => {
   activeLetters.update((letters) => {

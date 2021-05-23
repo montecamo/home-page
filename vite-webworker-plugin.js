@@ -1,5 +1,5 @@
-import esbuild from "esbuild";
-import path from "path";
+import esbuild from 'esbuild';
+import path from 'path';
 
 const isWorker = (path) => /\.(worker)\..+$/.test(path);
 const isViteWorker = (path) => /\?worker_file/.test(path);
@@ -18,7 +18,7 @@ export default function webworkerPlugin() {
     },
     load(id) {
       if (isWorker(id) && !isViteWorker(id)) {
-        if (config.command !== "build") {
+        if (config.command !== 'build') {
           return `export default '${id.match(/(src\/.*)/)[0]}?worker_file';`;
         }
 
@@ -32,8 +32,8 @@ export default function webworkerPlugin() {
         const content = result.outputFiles[0].contents;
 
         return `export default '__VITE_ASSET__${this.emitFile({
-          type: "asset",
-          name: path.basename(id).replace(/\.ts/, ".js"),
+          type: 'asset',
+          name: path.basename(id).replace(/\.ts/, '.js'),
           source: content,
         })}__'`;
       }

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { makeParticles } from "../particles";
+  import { makeParticles } from '../particles';
   export let visible: boolean;
 
   let canvas: HTMLCanvasElement;
@@ -7,9 +7,9 @@
   let width: number;
   let height: number;
 
-  import { onMount } from "svelte";
+  import { onMount } from 'svelte';
 
-  import { secondary as color } from "../stores/colors";
+  import { secondary as color } from '../stores/colors';
 
   $: {
     if (particles) {

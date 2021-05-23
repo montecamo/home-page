@@ -1,6 +1,6 @@
 <script lang="ts">
   export let inverted = false;
-  export let aria = "";
+  export let aria = '';
   export let href: string;
 </script>
 

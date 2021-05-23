@@ -1,21 +1,21 @@
 <script lang="ts">
-  import LinkedinIcon from "@fortawesome/fontawesome-free/svgs/brands/linkedin-in.svg?component";
-  import GithubIcon from "@fortawesome/fontawesome-free/svgs/brands/github.svg?component";
-  import TelegramIcon from "@fortawesome/fontawesome-free/svgs/brands/telegram-plane.svg?component";
-  import EmailIcon from "@fortawesome/fontawesome-free/svgs/solid/envelope.svg?component";
+  import LinkedinIcon from '@fortawesome/fontawesome-free/svgs/brands/linkedin-in.svg?component';
+  import GithubIcon from '@fortawesome/fontawesome-free/svgs/brands/github.svg?component';
+  import TelegramIcon from '@fortawesome/fontawesome-free/svgs/brands/telegram-plane.svg?component';
+  import EmailIcon from '@fortawesome/fontawesome-free/svgs/solid/envelope.svg?component';
 
-  import Header from "./components/Header.svelte";
-  import Theme from "./components/Theme.svelte";
-  import Particles from "./components/Particles.svelte";
-  import Icon from "./components/Icon.svelte";
-  import Link from "./components/Link.svelte";
-  const RickRoll = () => import("./components/RickRoll.svelte");
+  import Header from './components/Header.svelte';
+  import Theme from './components/Theme.svelte';
+  import Particles from './components/Particles.svelte';
+  import Icon from './components/Icon.svelte';
+  import Link from './components/Link.svelte';
+  const RickRoll = () => import('./components/RickRoll.svelte');
 
-  import { URLS, HEADINGS } from "./constants";
+  import { URLS, HEADINGS } from './constants';
 
-  import { background, secondary, primary } from "./stores/colors";
-  import { fontLoaded } from "./stores/fontLoaded";
-  import { rickroll, rickrollPlaying } from "./stores/rickroll";
+  import { background, secondary, primary } from './stores/colors';
+  import { fontLoaded } from './stores/fontLoaded';
+  import { rickroll, rickrollPlaying } from './stores/rickroll';
 </script>
 
 {#if $rickroll}

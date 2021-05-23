@@ -3,11 +3,11 @@
   export let letter: string;
   export let key: string;
 
-  import { createEventDispatcher } from "svelte";
+  import { createEventDispatcher } from 'svelte';
   const dispatch = createEventDispatcher();
 
   function handleClick() {
-    dispatch("click", key);
+    dispatch('click', key);
   }
 </script>
 

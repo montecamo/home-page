@@ -12,7 +12,7 @@ body {
 :root {
   --font-size: 64px;
   --line-height: 80px;
-  --font-family: "Poppins", sans-serif;
+  --font-family: 'Poppins', sans-serif;
   --font-bold: 600;
   --space: 24px;
 }

@@ -1,9 +1,9 @@
 export enum EVENT_TYPE {
-  RESIZE = "resize",
-  MOUSEMOVE = "mousemove",
-  CLICK = "click",
-  INIT = "init",
-  COLOR = "color",
+  RESIZE = 'resize',
+  MOUSEMOVE = 'mousemove',
+  CLICK = 'click',
+  INIT = 'init',
+  COLOR = 'color',
 }
 
 export type ResizeEvent = {
@@ -38,17 +38,17 @@ export type CanvasEvent =
   | InitEvent
   | ColorEvent;
 
-export type CanvasEventData = CanvasEvent["data"];
+export type CanvasEventData = CanvasEvent['data'];
 
 type Listener<T> = (event: T) => void;
 
 export type Api = {
   on: <T extends CanvasEventData>(type: EVENT_TYPE, cb: Listener<T>) => void;
-  resize: (event: ResizeEvent["data"]) => void;
-  mousemove: (event: MoveEvent["data"]) => void;
+  resize: (event: ResizeEvent['data']) => void;
+  mousemove: (event: MoveEvent['data']) => void;
   click: () => void;
-  init: (event: InitEvent["data"], transfter: any[]) => void;
-  color: (event: ColorEvent["data"]) => void;
+  init: (event: InitEvent['data'], transfter: any[]) => void;
+  color: (event: ColorEvent['data']) => void;
 };
 
 export function makeApi({

@@ -1,9 +1,9 @@
 // @ts-ignore
-import url from "./particles.worker";
+import url from './particles.worker';
 
-import { makeApi } from "./api";
-import type { Api } from "./api";
-import { makeOutsideBridge } from "./bridge";
+import { makeApi } from './api';
+import type { Api } from './api';
+import { makeOutsideBridge } from './bridge';
 
 export function makeParticles(canvas: HTMLCanvasElement): Api {
   canvas.width = window.innerWidth;
@@ -23,7 +23,7 @@ export function makeParticles(canvas: HTMLCanvasElement): Api {
       width: canvas.width,
       height: canvas.height,
     },
-    [offscreen]
+    [offscreen],
   );
 
   return api;

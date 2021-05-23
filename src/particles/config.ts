@@ -12,16 +12,16 @@ export function makeConfig(color: string) {
         value: color,
       },
       shape: {
-        type: "circle",
+        type: 'circle',
         stroke: {
           width: 0,
-          color: "#000000",
+          color: '#000000',
         },
         polygon: {
           nb_sides: 5,
         },
         image: {
-          src: "img/github.svg",
+          src: 'img/github.svg',
           width: 100,
           height: 100,
         },
@@ -56,10 +56,10 @@ export function makeConfig(color: string) {
       move: {
         enable: true,
         speed: 4,
-        direction: "none",
+        direction: 'none',
         random: false,
         straight: false,
-        out_mode: "out",
+        out_mode: 'out',
         bounce: false,
         attract: {
           enable: false,
@@ -69,15 +69,15 @@ export function makeConfig(color: string) {
       },
     },
     interactivity: {
-      detect_on: "canvas",
+      detect_on: 'canvas',
       events: {
         onhover: {
           enable: true,
-          mode: "repulse",
+          mode: 'repulse',
         },
         onclick: {
           enable: true,
-          mode: "push",
+          mode: 'push',
         },
         resize: true,
       },

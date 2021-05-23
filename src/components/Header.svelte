@@ -1,9 +1,9 @@
 <script lang="ts">
-  import Letter from "./Letter.svelte";
+  import Letter from './Letter.svelte';
 
   export let text: string;
 
-  import { activeLetters, toggleLetter } from "../stores/activeLetters";
+  import { activeLetters, toggleLetter } from '../stores/activeLetters';
 
   function handleClick(data: CustomEvent<string>) {
     toggleLetter(data.detail);
@@ -16,7 +16,7 @@
 
 <div class="header">
   {#each text as letter, i}
-    {#if letter === " "}
+    {#if letter === ' '}
       &nbsp;
     {:else}
       <Letter

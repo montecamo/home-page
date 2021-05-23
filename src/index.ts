@@ -1,7 +1,7 @@
-import "./index.css";
-import "./backgroundSetter";
+import './index.css';
+import './backgroundSetter';
 
-import App from "./App.svelte";
+import App from './App.svelte';
 
 function replaceContainer(Component, options) {
   const frag = document.createDocumentFragment();
@@ -13,5 +13,5 @@ function replaceContainer(Component, options) {
 }
 
 replaceContainer(App, {
-  target: document.getElementById("root"),
+  target: document.getElementById('root'),
 });
